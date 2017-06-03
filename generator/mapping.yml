@@ -1,0 +1,34 @@
+---
+# Constants
+auto:	niech
+void:
+- procedura
+- nic
+
+# Methods and functions
+delay:	czekaj
+
+# Structures
+break:	stop
+case:	w_przypadku
+do:		wykonuj
+else:	w_przeciwnym_razie
+for:	powtorz
+if:		jezeli
+return:	wynik
+goto:	skocz_do
+switch: wybierz
+throw:
+try:
+while:	dopoki
+
+# Arduino API
+setup:	ustaw
+loop:	powtarzaj
+export:
+
+# Logic
+not:	nie
+or:		lub
+and:	i
+xor:
