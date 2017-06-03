@@ -1,2 +1,3 @@
-# polduino
-Arduino library allowing to write code in Polish language
+# Babelduino
+
+Arduino library that allows writing code in local language.
