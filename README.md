@@ -15,7 +15,7 @@ void loop() {
   }
 }
 ```
-⬇️ *(translated into Polish)*
+⬇🇵🇱
 ```c
 procedura powtarzaj() {
   niech odleglosc = radar.ping_cm();
@@ -36,6 +36,20 @@ young learners**, by eliminating spoken language barrier. It was inspired by
 platforms such as 
 [Logo](https://en.wikipedia.org/wiki/Logo_(programming_language)) and 
 [Scratch](https://scratch.mit.edu).
+
+## Usage
+
+Add the Library and include all translations:
+
+```c
+#include <Babelduino.h>
+```
+
+Or just the one that's interesting to you:
+
+```c
+#include <Babelduino_PL.h>
+```
 
 ## Adding new languages and keywords
 
