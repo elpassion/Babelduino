@@ -32,8 +32,8 @@ procedura powtarzaj() {
 ## But... why? 😱
 
 The aim is to make it easier for mentors **to show the joy of programming to 
-young learners**, by eliminating a language barrier of code written in English. 
-It was inspired by platforms such as 
+young learners**, by eliminating spoken language barrier. It was inspired by 
+platforms such as 
 [Logo](https://en.wikipedia.org/wiki/Logo_(programming_language)) and 
 [Scratch](https://scratch.mit.edu).
 
@@ -42,11 +42,11 @@ It was inspired by platforms such as
 Feel free to add new language or keyword:
 
 1. Take a look at [extras/mappings/pl.yml](extras/mappings/pl.yml) for an 
-example of how to map original keywords (`if`, `else`, `loop`) to local 
-counterparts (`jezeli`, `w_przeciwnym_razie`, `powtarzaj`).
+   example of how to map original keywords (`if`, `else`, `loop`) to local 
+   counterparts (`jezeli`, `w_przeciwnym_razie`, `powtarzaj`).
 
 2. Create your own mapping YAML file and put it into 
-[extras/mappings](extras/mappings) directory.
+   [extras/mappings](extras/mappings) directory.
 
 3. Run `extras/generate` script (Ruby needed). You must provide a path to 
    original Arduino IDE `keywords.txt` file. For macOS, it is located inside the
@@ -93,9 +93,9 @@ podaj liczbe suma(liczba a, liczba b) {
 Here, `podaj` (synonym for "return" in Polish) is only a marker for function 
 returning a value, and `liczbe` is an alias for `int` type.
 
-If you want such an extra keyword, simply add it to your YAML mapping, 
-describing what kind of highlighting would you like to get (here, `podaj` will
-be highlighted in the same way as `auto` keyword):
+If you want such extra keyword, simply add it to your YAML mapping, describing 
+what kind of highlighting would you like to get (here, `podaj` will be 
+highlighted in the same way as `auto` keyword):
 
 ```yaml
 __extra__:
