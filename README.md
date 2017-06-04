@@ -42,7 +42,7 @@ platforms such as
 Feel free to add new language or keyword:
 
 1. Take a look at [extras/mappings/pl.yml](extras/mappings/pl.yml) for an 
-   example of how to map the keywords (`if` --> `jezeli`)
+   example of keyword mapping (`if` -> `jezeli`).
 
 2. You can create several different mappings for the same keyword.
 
