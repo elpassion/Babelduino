@@ -15,7 +15,7 @@ void loop() {
   }
 }
 ```
-⬇️ (translated into Polish)
+⬇️ *(translated into Polish)*
 ```c
 procedura powtarzaj() {
   niech odleglosc = radar.ping_cm();
@@ -42,21 +42,22 @@ platforms such as
 Feel free to add new language or keyword:
 
 1. Take a look at [extras/mappings/pl.yml](extras/mappings/pl.yml) for an 
-   example of how to map original keywords (`if`, `else`, `loop`) to local 
-   counterparts (`jezeli`, `w_przeciwnym_razie`, `powtarzaj`).
+   example of how to map the keywords (`if` --> `jezeli`)
+
+2. You can create several different mappings for the same keyword.
 
 2. Create your own mapping YAML file and put it into 
    [extras/mappings](extras/mappings) directory.
 
-3. Run `extras/generate` script (Ruby needed). You must provide a path to 
-   original Arduino IDE `keywords.txt` file. For macOS, it is located inside the
-   app package:
+3. Run `extras/generate` script (Ruby needed).
+
+   You must provide a path to original Arduino IDE `keywords.txt` file. For 
+   macOS, it is located inside the app package:
 
    `$ ./extras/generate /Applications/Arduino.app/Contents/Java/lib/keywords.txt`
    
 4. The script will generate C header files with keyword aliases and add 
-   translations to [keywords.txt](keywords.txt) file, allowing Arduino IDE to 
-   highlight the localised syntax.
+   translations to [keywords.txt](keywords.txt) file.
 
 5. Create a Pull Request with your new translations :)
 
@@ -74,9 +75,9 @@ original keywords.
 ## Extra keywords
 
 There is a possibility to add an "empty" translation, an additional keyword that
-will be ignored by the compiler but highlighted by the IDE. It can make it 
-easier to teach concepts like `function` vs `procedure`, where you may need more 
-words to describe what the piece of code does:
+will be ignored by the compiler but highlighted by the IDE. It makes it easier 
+to teach concepts like `function` vs `procedure`, where you may need more words 
+to describe what the piece of code does:
 
 ```c
 int sum(int a, int b) {
@@ -90,12 +91,12 @@ podaj liczbe suma(liczba a, liczba b) {
 }
 ```
 
-Here, `podaj` (synonym for "return" in Polish) is only a marker for function 
-returning a value, and `liczbe` is an alias for `int` type.
+Here, `podaj` (synonym for "returning" in Polish) is only a marker for a
+function (something returning a value), and `liczbe` is an alias for `int` type.
 
-If you want such extra keyword, simply add it to your YAML mapping, describing 
-what kind of highlighting would you like to get (here, `podaj` will be 
-highlighted in the same way as `auto` keyword):
+If you want an extra keyword, simply add it to your YAML mapping, describing 
+how it should be highlighted (here, `podaj` will be coloured in the same way as 
+`auto` keyword):
 
 ```yaml
 __extra__:
