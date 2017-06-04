@@ -31,8 +31,11 @@ procedura powtarzaj() {
 
 ## But... why? 😱
 
-The aim is to make it easier for mentors **to show the joy of programming to 
-young learners**, by eliminating spoken language barrier. It was inspired by 
+Yes, I hear you screaming! Writing Code Like This Is Not The Way Adults Should
+Behave. Nothing more true!
+
+The aim here is to make it easier for mentors **to show the joy of programming 
+to young learners**, by eliminating spoken language barrier. It was inspired by 
 platforms such as 
 [Logo](https://en.wikipedia.org/wiki/Logo_(programming_language)) and 
 [Scratch](https://scratch.mit.edu).
