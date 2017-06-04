@@ -4,7 +4,7 @@ __extra__:
   auto: podaj
 
 # Constants
-auto:	niech
+auto: niech
 
 boolean: [czy, taknie]
 int: [liczba, liczbe]
