@@ -1,7 +1,12 @@
 #ifndef BABELDUINO_PL_H
 #define BABELDUINO_PL_H
 
+#define podaj
 #define niech auto
+#define czy boolean
+#define taknie boolean
+#define liczba int
+#define liczbe int
 #define procedura void
 #define nic void
 #define czekaj delay

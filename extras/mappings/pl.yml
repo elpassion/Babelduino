@@ -1,9 +1,14 @@
 ---
+# Extra syntax
+__extra__:
+  auto: podaj
+
 # Constants
 auto:	niech
-void:
-- procedura
-- nic
+
+boolean: [czy, taknie]
+int: [liczba, liczbe]
+void: [procedura, nic]
 
 # Methods and functions
 delay: czekaj

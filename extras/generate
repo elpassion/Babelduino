@@ -15,8 +15,15 @@ class LocalesGenerator < Struct.new(:library_name, :mappings_dir, :keywords_in, 
               [translations].flatten.each do |translation|
                 next if translation.nil? || translation.length == 0
 
-                file.puts "#define #{translation} #{keyword}"
-                keywords_output.puts "#{translation}\t#{original_keywords[keyword] || 'LITERAL1'}"
+                if translation.is_a?(Hash)
+                  translation.each do |key, value|
+                    file.puts "#define #{value}#{' ' + value unless keyword == '__extra__'}"
+                    keywords_output.puts "#{value}\t#{original_keywords[key] || 'LITERAL1'}"
+                  end
+                else
+                  file.puts "#define #{translation}#{' ' + keyword unless keyword == '__extra__'}"
+                  keywords_output.puts "#{translation}\t#{original_keywords[keyword] || 'LITERAL1'}"
+                end
               end
             end
           end
