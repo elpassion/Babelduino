@@ -1,0 +1,100 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'yaml'
+
+class LocalesGenerator < Struct.new(:library_name, :mappings_dir, :keywords_in, :headers_dir, :keywords_out_path)
+  def run!
+    File.open(keywords_out_path, 'w') do |keywords_output|
+      header_file(library_name) do |library|
+        each_mapping do |locale, mapping|
+          locale_header = "#{library_name}_#{locale.upcase}"
+      
+          header_file(locale_header) do |file|
+            mapping.each do |keyword, translations|
+              [translations].flatten.each do |translation|
+                next if translation.nil? || translation.length == 0
+
+                file.puts "#define #{translation} #{keyword}"
+                keywords_output.puts "#{translation}\t#{original_keywords[keyword] || 'LITERAL1'}"
+              end
+            end
+          end
+
+          library.puts "#include \"#{locale_header}.h\""
+        end
+      end
+  
+      puts "Saving \"#{keywords_output.path}\" file."
+    end
+  end
+
+  private
+  
+  def original_keywords
+    @original_keywords ||= fetch_keywords(keywords_in)
+  end
+
+  def each_mapping
+    puts "Reading mapping files from \"#{mappings_dir}\" directory."
+  
+    Dir[File.join(mappings_dir, '*.yml')].each do |file|
+      begin
+        mapping_locale = File.basename(file, '.*')
+        mapping        = YAML.load_file(file)
+      
+        puts "  Loaded \"#{mapping_locale}\" locale with #{mapping.size} keywords."
+            
+        yield mapping_locale, mapping
+      rescue => error
+        puts "! Unable to read \"#{File.basename(file)}\": #{error}"
+        exit 2
+      end
+    end
+  end
+
+  def fetch_keywords(keywords_out)
+    puts "Fetching keywords from \"#{keywords_out}\"."
+  
+    keywords = {}
+  
+    File.foreach(keywords_out) do |line|
+      keyword, options = line.split(nil, 2)
+  
+      keywords[keyword.gsub(/^\\#/, '#')] = options unless keyword.nil? || keyword.length == 0 || keyword.start_with?('#')
+    end
+  
+    puts "  Fetched #{keywords.size} keywords."
+  
+    keywords
+  rescue => error
+    puts "! Error reading keywords: #{error}"
+    exit 2
+  end
+
+  def header_file(name)
+    filename = File.join(headers_dir, "#{name}.h")
+    header   = File.open(filename, 'w') do |file|
+      header_guard = name.gsub(/\W/, '_').upcase + '_H'
+    
+      file.puts "#ifndef #{header_guard}\n#define #{header_guard}\n\n"
+      yield file
+      file.puts "\n#endif /* #{header_guard} */"
+    
+      puts "Saving \"#{filename}\" header file."
+    end
+  rescue => error
+    puts "! Unable to save \"#{filename}\" header file: #{error}"
+    exit 2
+  end
+end
+
+if ARGV.size != 1
+  puts "Usage: #{$PROGRAM_NAME} path_to_keywords.txt"
+  puts
+  puts '  You must specify path to original Arduino keywords.txt.'
+  puts '  It can be found in "Java/lib" Arduino app directory/package.'
+  exit
+end
+
+LocalesGenerator.new('Babelduino', File.join('extras', 'mappings'), ARGV[0], 'src', 'keywords.txt').run!
