@@ -15,7 +15,7 @@ void loop() {
   }
 }
 ```
-⬇️
+⬇️ (translated into Polish)
 ```c
 procedura powtarzaj() {
   niech odleglosc = radar.ping_cm();
